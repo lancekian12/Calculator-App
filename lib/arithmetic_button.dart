@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ArithmeticButton extends StatelessWidget {
-  const ArithmeticButton(this.text, {super.key, this.operation});
+  const ArithmeticButton(this.label, {super.key, required this.operation});
 
-  final String text;
-  final void Function()? operation;
+  final String label;
+  final VoidCallback operation;
   @override
   Widget build(context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: operation,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
         foregroundColor: const Color.fromARGB(255, 67, 62, 62),
       ),
       child: Text(
-        text,
+        label,
         textAlign: TextAlign.center,
       ),
     );

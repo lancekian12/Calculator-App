@@ -3,6 +3,7 @@ import 'package:calculator_app/arithmetic_button.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
   @override
   State<MainScreen> createState() {
     return _MainScreenState();
@@ -10,9 +11,58 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final TextEditingController firstValueController = TextEditingController();
+  final TextEditingController secondValueController = TextEditingController();
+  String result = '';
+
+  void addition() {
+    final num1 = double.tryParse(firstValueController.text);
+    final num2 = double.tryParse(secondValueController.text);
+    if (num1 != null && num2 != null) {
+      setState(() {
+        result = (num1 + num2).toString();
+      });
+    }
+  }
+
+  void subtraction() {
+    final num1 = double.tryParse(firstValueController.text);
+    final num2 = double.tryParse(secondValueController.text);
+    if (num1 != null && num2 != null) {
+      setState(() {
+        result = (num1 - num2).toString();
+      });
+    }
+  }
+
+  void multiplication() {
+    final num1 = double.tryParse(firstValueController.text);
+    final num2 = double.tryParse(secondValueController.text);
+    if (num1 != null && num2 != null) {
+      setState(() {
+        result = (num1 * num2).toString();
+      });
+    }
+  }
+
+  void division() {
+    final num1 = double.tryParse(firstValueController.text);
+    final num2 = double.tryParse(secondValueController.text);
+    if (num1 != null && num2 != null && num2 != 0) {
+      setState(() {
+        result = (num1 / num2).toString();
+      });
+    } else if (num2 == 0) {
+      setState(() {
+        result = 'Cannot divide by zero';
+      });
+    }
+  }
+
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -35,29 +85,43 @@ class _MainScreenState extends State<MainScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextFormField(
+                      controller: firstValueController,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
                         labelText: 'Input first value:',
                       ),
+                      keyboardType: TextInputType.number,
                     ),
                     TextFormField(
+                      controller: secondValueController,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
                         labelText: 'Input second value:',
                       ),
+                      keyboardType: TextInputType.number,
                     ),
-                    const SizedBox(
-                      height: 50,
+                    const SizedBox(height: 50),
+                    ArithmeticButton(
+                      "Addition",
+                      operation: addition,
                     ),
-                    const ArithmeticButton("Addition"),
-                    const ArithmeticButton("Subtraction"),
-                    const ArithmeticButton("Multiplication"),
-                    const ArithmeticButton("Division"),
+                    ArithmeticButton(
+                      "Subtraction",
+                      operation: subtraction,
+                    ),
+                    ArithmeticButton(
+                      "Multiplication",
+                      operation: multiplication,
+                    ),
+                    ArithmeticButton(
+                      "Division",
+                      operation: division,
+                    ),
                     const SizedBox(height: 80),
-                    const Text(
-                      "Result",
+                    Text(
+                      result,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
