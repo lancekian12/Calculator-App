@@ -117,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
                       "Division",
                       operation: division,
                     ),
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 40),
                     Text(
                       result,
                       textAlign: TextAlign.center,
