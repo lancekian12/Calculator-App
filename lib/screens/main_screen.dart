@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:calculator_app/arithmetic_button.dart';
+import 'package:calculator_app/widgets/arithmetic_button.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -80,54 +80,56 @@ class _MainScreenState extends State<MainScreen> {
               width: double.infinity,
               child: Container(
                 margin: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    TextFormField(
-                      controller: firstValueController,
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Input first value:',
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        controller: firstValueController,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Input first value:',
+                        ),
+                        keyboardType: TextInputType.number,
                       ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    TextFormField(
-                      controller: secondValueController,
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Input second value:',
+                      TextFormField(
+                        controller: secondValueController,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Input second value:',
+                        ),
+                        keyboardType: TextInputType.number,
                       ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    const SizedBox(height: 50),
-                    ArithmeticButton(
-                      "Addition",
-                      operation: addition,
-                    ),
-                    ArithmeticButton(
-                      "Subtraction",
-                      operation: subtraction,
-                    ),
-                    ArithmeticButton(
-                      "Multiplication",
-                      operation: multiplication,
-                    ),
-                    ArithmeticButton(
-                      "Division",
-                      operation: division,
-                    ),
-                    const SizedBox(height: 40),
-                    Text(
-                      result,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 50),
+                      ArithmeticButton(
+                        "Addition",
+                        operation: addition,
                       ),
-                    ),
-                  ],
+                      ArithmeticButton(
+                        "Subtraction",
+                        operation: subtraction,
+                      ),
+                      ArithmeticButton(
+                        "Multiplication",
+                        operation: multiplication,
+                      ),
+                      ArithmeticButton(
+                        "Division",
+                        operation: division,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        result,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
